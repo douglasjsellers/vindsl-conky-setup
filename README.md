@@ -1,2 +1,2 @@
-# vindsl-conky-setup
-A working vindsl conky setup 
+# VinDsl Conky Setup
+![Screenshot](background.jpg?raw=true "Screenshot")
