@@ -142,3 +142,6 @@ ${voffset 0}${font PizzaDudeBullets:size=9.5}${color6}a${font DroidSans:size=8.6
 ```
 
 Once that is done, conky should restart and you will see the network information updating
+
+## Contact
+If you have other problems please open an issue and I will try to update this guide.  
