@@ -22,4 +22,18 @@ After you clone the repo you have to copy all the files into your home directory
 2. .fonts (directory)
 3. .conky (directory)
 
+### Clear Font Cache
+Once you have copied all the fonts into place you have to clear your font cache for them to be located.
+
+```
+fc-cache -fv
+```
+
+### Install Screen Ruler
+Most likely, to get everything perfectly positioned you will need screenruler.
+
+```
+sudo apt-get install screenruler
+```
+
 
