@@ -1,2 +1,2 @@
 # VinDsl Conky Setup
-![Screenshot](background.jpg?raw=true "Screenshot")
+![Screenshot](desktop.jpg?raw=true "Screenshot")
