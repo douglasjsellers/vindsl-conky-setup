@@ -98,3 +98,47 @@ What you want to adjust is the x and y coordinates.  The easiest way to solve th
 
 #### Positioning Everything Else
 The rest of the positioning is controlled by the *voffset* and the *offset* parameters of the particular widgets in the *.conkyrc* file.  The different widgets are commented well.  Just start from the top and work your way down, adjusting it to look more or less like the screen shot at the start of this guide.  
+
+### Other Problems
+Here are some other problems that can occur
+
+#### Network information is not being updated
+This problem can occur when the proper your network adapter id is not entered correctly.  The easiest way to solve this problem is to run
+```
+ifconfig
+```
+Find the device id next to the Ethernet encap.
+
+```
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:147024 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:147024 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:73890113 (73.8 MB)  TX bytes:73890113 (73.8 MB)
+
+wlp60s0   Link encap:Ethernet  HWaddr f8:63:3f:0a:47:45  
+          inet addr:192.168.0.9  Bcast:192.168.0.255  Mask:255.255.255.0
+          inet6 addr: fe80::bbd7:5c2d:1ed2:abc8/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:3479420 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1656575 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:4676762370 (4.6 GB)  TX bytes:275945628 (275.9 MB)
+```
+In this case wlp60s0.  Take this id and replace all the instances of *wlp60s0* in the network section of the *.conkyrc* file with the id you retrievde from ifconfig:
+
+```
+##################################
+##           NETWORK            ##
+##################################
+${voffset 4}${font DroidSans:bold:size=8}${color4}NETWORK${offset 8}${color8}${voffset -2}${hr 2}${font}
+${voffset 4}${font PizzaDudeBullets:size=9.5}${color6}T${font DroidSans:size=8.65}${color3}${offset 5}Download${goto 120}${font DroidSans:size=8.3}${totaldown wlp60s0}${alignr}${font DroidSans:size=8.3}${downspeed wlp60s0}${font}
+${voffset 0}${font PizzaDudeBullets:size=9.5}${color6}N${font DroidSans:size=8.65}${color3}${offset 5}Upload${goto 120}${font DroidSans:size=8.3}${totalup wlp60s0}${alignr}${font DroidSans:size=8.3}${upspeed wlp60s0}${font}
+${voffset 4}${font PizzaDudeBullets:size=9.5}${color6}a${font DroidSans:size=8.65}${color3}${offset 5}Private${offset 3}IP${goto 123}${font DroidSansFallback:size=8.5}LAN${alignr}${font DroidSans:size=8.3}${addr wlp60s0}${font}
+${voffset 0}${font PizzaDudeBullets:size=9.5}${color6}a${font DroidSans:size=8.65}${color3}${offset 5}Public${offset 7}IP${goto 121}${font DroidSansFallback:size=8.5}WAN${alignr}${font DroidSans:size=8.3}${execi 1800 wget -q -O - checkip.dyndns.org | sed -e 's/[^[:digit:]\|.]//g'}${font}
+```
+
+Once that is done, conky should restart and you will see the network information updating
