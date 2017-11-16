@@ -63,3 +63,38 @@ ${voffset 0}${font DroidSansFallback:bold:size=8.62}${color4}${offset 28}${execi
 ```
 
 In this case the zip code is set to 91411.  To adjust that replace all of the instances in this section of 91411 with your zip code.  If you wish to make this support something other than zip codes this can be done by editing the *.conky/weather/weather.sh* file and adjusting the way that the weather underground api urls are built.  This is left as an exercise for the reader.
+
+### Start Conky
+At this point you should start conky and see what happens
+
+```
+sudo killall conky ; conky
+```
+
+### Fixing Defects
+At this point, most likely, you will see some defects in the way that it is rendered.  Mainly there are two kinds of positioning errors.
+
+#### Badly Positioned Bar Charts
+To fix this issue you need to edit ~/.conky/bargraph_small.lua.  Each of the bars is represneted like this:
+```
+		{	--[ Graph for CPU1 ]--
+			name="cpu",
+			arg="cpu1",
+			max=100,
+			alarm=50,
+			alarm_colour={0xFF0000,0.72},
+			bg_colour={0xFFFFFF,0.25},
+			fg_colour={0x00FF00,0.55},
+			mid_colour={{0.45,0xFFFF00,0.70}},
+			x=92,y=210,
+			blocks=65,
+			space=1,
+			height=2,width=5,
+			angle=90,
+			smooth=true
+			},
+```
+What you want to adjust is the x and y coordinates.  The easiest way to solve these issues is to fire up screenruler, measure from the top of the screen down to the location you want the particular chat bar to be and then enter that number as the y.  Then it is easiest to just fiddlle with the x number to get it placed perfectly rather than trying to measure.  You will probably have to do that for each of the bar charts.
+
+#### Positioning Everything Else
+The rest of the positioning is controlled by the *voffset* and the *offset* parameters of the particular widgets in the *.conkyrc* file.  The different widgets are commented well.  Just start from the top and work your way down, adjusting it to look more or less like the screen shot at the start of this guide.  
