@@ -13,3 +13,11 @@ sudo apt-get install gdebi
 sudo gdebi conky-all_1.9.0-6build1_amd64.deb
 sudo apt-mark hold conky-all
 ```
+
+### Copying files into place
+After you clone the repo you have to copy all the files into your home directory.  The following files and directories must be in ~/
+1. .conkyrc
+2. .fonts (directory)
+3. .conky (directory)
+
+
