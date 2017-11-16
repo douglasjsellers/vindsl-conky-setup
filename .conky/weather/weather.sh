@@ -70,7 +70,7 @@ conditions_xml="${RUNDIR}/weatherConditions.xml"
 forecast_xml="${RUNDIR}/weatherForecast.xml"
 tenday_xml="${RUNDIR}/weatherForecastTenDay.xml"
 
-wunderground_key="2a4d88c2e9573df0"
+wunderground_key="your key here"
 
 # Location ID string
 # Parsed from .conkyrc
